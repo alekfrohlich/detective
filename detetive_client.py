@@ -2,6 +2,8 @@
 
 import socket
 
+from cards import DESERIALIZED
+
 
 HOST = '127.0.0.1'
 PORT = 65431
@@ -16,7 +18,7 @@ class GameClient:
 
     def main_loop(self):
         for i in range(18):
-            card = repr(self.socket.recv(1024))
+            card = DESERIALIZED[self.socket.recv(1)]
             print(card)
 
 if __name__ == '__main__':

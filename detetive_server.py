@@ -3,39 +3,11 @@
 from random import sample
 import socket
 
+from cards import (SUSPECTS, WEAPONS, PLACES, SERIALIZED)
+
 
 HOST = '127.0.0.1'
 PORT = 65431
-
-SUSPECTS = [
-    "Col. Mustard",
-    "Prof. Plum",
-    "Rev. Green",
-    "Mrs. Peacock",
-    "Miss Scarlet",
-    "Mrs. White",
-]
-
-WEAPONS = [
-    "Knife",
-    "Candlestick",
-    "Revolver",
-    "Rope",
-    "Lead Pipe",
-    "Wrench",
-]
-
-PLACES = [
-    "Hall",
-    "Lounge",
-    "Dinning Room",
-    "Kitchen",
-    "Ball Room",
-    "Conservatory",
-    "Billiard Room",
-    "Library",
-    "Study",
-]
 
 
 class GameServer:
@@ -65,9 +37,8 @@ class GameServer:
         (clientsocket, address) = self.socket.accept()
         print(str(address) + " connected")
         while len(self.merged_cards) > 0:
-            card = self.merged_cards.pop().encode('utf-8')
-            print(card)
-            clientsocket.sendall(card)
+            card = self.merged_cards.pop()
+            clientsocket.sendall(SERIALIZED[card])
 
 
 if __name__ == '__main__':
