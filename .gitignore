@@ -1,4 +1,3 @@
 *.vscode/
 *__pycache__/
 cartas
-decrypt.py
